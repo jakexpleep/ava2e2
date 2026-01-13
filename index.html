@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Ava Is Cool</title>
+  <style>
+    html, body {
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      background: #0d0d0d;
+      overflow: hidden;
+      cursor: pointer;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .text {
+      position: absolute;
+      color: white;
+      font-size: 2.5rem;
+      opacity: 0;
+      animation: fade 1.5s ease-in-out forwards;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+
+    .ring {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #00ffff;
+      border-radius: 50%;
+      animation: ripple 1.5s ease-out forwards;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes fade {
+      0% { opacity: 0; }
+      30% { opacity: 1; }
+      70% { opacity: 1; }
+      100% { opacity: 0; }
+    }
+
+    @keyframes ripple {
+      0% {
+        transform: translate(-50%, -50%) scale(0.2);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(6);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    document.addEventListener("click", (e) => {
+      const text = document.createElement("div");
+      text.className = "text";
+      text.textContent = "ava is cool";
+      text.style.left = e.clientX + "px";
+      text.style.top = e.clientY + "px";
+
+      const ring = document.createElement("div");
+      ring.className = "ring";
+      ring.style.left = e.clientX + "px";
+      ring.style.top = e.clientY + "px";
+
+      document.body.appendChild(text);
+      document.body.appendChild(ring);
+
+      setTimeout(() => {
+        text.remove();
+        ring.remove();
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
